@@ -4,7 +4,7 @@ let c
 let d
 let origin
 
-let showOrigins
+let detailLevel
 let showIntersect
 let tSlider
 let uSlider
@@ -12,10 +12,13 @@ let uSlider
 function setup() {
   createCanvas(800, 600)
 
-  showOrigins = createCheckbox('All vectors', false)
+  createP('Detail')
+  detailLevel = createSlider(0, 3, 0, 1)
   showIntersect = createCheckbox('Intersect', false)
 
+  createP('t')
   tSlider = createSlider(0, 1, 0.5, 0.01)
+  createP('u')
   uSlider = createSlider(0, 1, 0.5, 0.01)
 
   origin = createVector(0, height)
@@ -31,27 +34,33 @@ const lightgray = { r: 120, g: 120, b: 120 }
 function draw() {
   background(0)
 
-  if (showOrigins.checked()) {
+  let detail = detailLevel.value()
+  if (detail >= 1) {
     drawVector(a, { origin: origin, label: 'a', color: lightgray })
-    drawVector(b, { origin: origin, label: 'b', color: lightgray })
     drawVector(c, { origin: origin, label: 'c', color: lightgray })
+  }
+
+  if (detail >= 2) {
+    drawVector(b, { origin: origin, label: 'b', color: lightgray })
     drawVector(d, { origin: origin, label: 'd', color: lightgray })
   }
-   {
+  {
     stroke(255)
     fill(255)
     strokeWeight(1)
     textSize(20)
 
-    text('a', a.x-20, origin.y+a.y+20)
-    text('b', b.x+20, origin.y+b.y)
+    // text('a', a.x-20, origin.y+a.y+20)
+    if (detail >= 2)
+      text('b', b.x+20, origin.y+b.y)
 
-    text('c', c.x, origin.y+c.y+20)
-    text('d', d.x-20, origin.y+d.y-15)
+    // text('c', c.x, origin.y+c.y+20)
+    if (detail >= 2)
+      text('d', d.x-20, origin.y+d.y-15)
   }
   let label1 = 'r'
   let label2 = '    s'
-  if (showOrigins.checked()) {
+  if (detail >= 3) {
     label1 = 'r = b-a'
     label2 = '    s = d-c'
   }

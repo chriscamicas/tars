@@ -33,7 +33,7 @@ class Car {
     this.acc = createVector()
     this.heading = 0
     this.lidar = []
-    for (let angle = 0; angle < TWO_PI; angle += TWO_PI / 800) {
+    for (let angle = 0; angle < TWO_PI; angle += TWO_PI / 8) {
       this.lidar.push(new Ray(angle))
     }
   }

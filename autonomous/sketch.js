@@ -12,9 +12,9 @@ function setup() {
   center = createVector(width / 2, height / 2)
 
   let circuitSelection = createSelect();
-  circuitSelection.option('QSDF', 0);
-  circuitSelection.option('Circuit Mario', 1);
-  circuitSelection.option('Plaine Donut', 2);
+  circuitSelection.option('Circuit Mario', 2);
+  circuitSelection.option('Plaine Donut', 1);
+  circuitSelection.option('test', 0);
   circuitSelection.changed(e => changeCircuit(e.srcElement.value));
 
   changeCircuit(2)
